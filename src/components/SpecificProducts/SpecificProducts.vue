@@ -1,40 +1,44 @@
 <script setup>
 import products from '/data/allProducts.json';
-import { ref, computed, onMounted } from 'vue';
-
+import { ref, onMounted, watch } from 'vue';
+// import use route from vue-router 
 import { useRoute } from 'vue-router';
 
+// initilize route 
+const route = useRoute();
+
+// declare ref 
 const specificProductInfo = ref(null);
+const filteredProducts = ref([]);
 
 specificProductInfo.value = products;
 
-const route = useRoute();
-const routeParamsId = ref(route.params.id);
-console.log(routeParamsId)
 
-const filteredProducts = computed(() => {
-  const result = specificProductInfo.value.filter((product) => product.sub_category === routeParamsId.value);
-  
-  return result;
-  console.log(result);
+const routeParamsId = ref(Number(route.params.id));
+
+const filterProducts = () => {
+  filteredProducts.value = specificProductInfo.value.filter(product => product.sub_category === routeParamsId.value);
+};
+
+watch(() => route.params.id, () => {
+  routeParamsId.value = Number(route.params.id);
+  filterProducts();
 });
+
 
 onMounted(() => {
-  routeParamsId.value = route.params.id;
+  specificProductInfo.value = products;
+  filterProducts();
 });
-
-
-
-
-
 
 </script>
 
 <template>
-<h1>Specific Product load here {{ $route.params.id }}</h1>
+<!-- <h1>Specific Product load here {{ route.params.id }}</h1> -->
+<h1 class="text-3xl text-center tracking-wide text-lime-500 font-bold mt-5 mb-5">Products</h1>
 <div class="grid sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 gap-3 mt-2">
         <div 
-        v-for="product in result" 
+        v-for="product in filteredProducts" 
         class="sm:col-span-12 md:col-span-6 lg:col-span-4">
             <div
                 class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
