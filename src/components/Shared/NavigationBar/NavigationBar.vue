@@ -5,7 +5,9 @@
 <template>
     <div class="navbar bg-base-200 sticky top-0 z-50">
         <div class="flex-1">
-            <a class="btn btn-ghost text-xl">NavBar</a>
+            <router-link to="/">
+                <a class="btn btn-ghost text-xl">NavBar</a>
+            </router-link>
         </div>
         
         <div class="flex-none">

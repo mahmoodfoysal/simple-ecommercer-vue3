@@ -95,5 +95,8 @@ onMounted(() => {
 </template>
 
 <style scoped>
-
+.card-image {
+    width: 100%;
+    height: 280px;
+}
 </style>
