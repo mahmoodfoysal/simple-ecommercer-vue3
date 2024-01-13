@@ -14,6 +14,11 @@ const routes = [
     },
     {
         path: '/products/:id',
+        name: 'productsByParentId', 
+        component: () => import('@/components/SpecificProducts/SpecificProductByParentId.vue'),
+    },
+    {
+        path: '/product/:id',
         name: 'ProductsSpecific', 
         component: () => import('@/components/SpecificProducts/SpecificProducts.vue'),
     },
