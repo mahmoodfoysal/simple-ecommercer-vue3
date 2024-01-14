@@ -13,14 +13,14 @@ const routes = [
         component: () => import('@/components/Products/Products.vue'),
     },
     {
-        path: '/products/:id',
+        path: '/categorys/:id',
         name: 'productsByParentId', 
-        component: () => import('@/components/SpecificProducts/SpecificProductByParentId.vue'),
+        component: () => import('@/components/CategoryWiseProducts/ParentCategoryProducts.vue'),
     },
     {
-        path: '/product/:id',
+        path: '/category/:id',
         name: 'ProductsSpecific', 
-        component: () => import('@/components/SpecificProducts/SpecificProducts.vue'),
+        component: () => import('@/components/CategoryWiseProducts/SubCategoryProducts.vue'),
     },
     {
         path: '/contact', 
