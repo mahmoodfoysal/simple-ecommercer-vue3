@@ -4,6 +4,7 @@ import ProductCard from '../ProductCard/ProductCard.vue';
 import { ref } from 'vue';
 const productsInfo = ref(null);
 
+
 productsInfo.value = products;
 </script>
 
@@ -31,6 +32,10 @@ productsInfo.value = products;
     Next
   </a>
 </div>
+
+
+<!-- testing  -->
+
 </template>
 
 <style scoped>
