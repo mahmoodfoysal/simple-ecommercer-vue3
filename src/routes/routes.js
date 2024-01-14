@@ -11,6 +11,7 @@ const routes = [
         path: '/products',
         name: 'Products', 
         component: () => import('@/components/Products/Products.vue'),
+        props: true
     },
     {
         path: '/categorys/:id/:slug',
@@ -36,6 +37,11 @@ const routes = [
         path: '/faq', 
         name: 'FAQ', 
         component: () => import('/src/components/FAQ/FAQ.vue')
+    },
+    {
+        path: '/product-details/:id/:slug',
+        name: "ProductDetails",
+        component: () => import('@/components/ProductCard/ProductDetail.vue'),
     },
     {
         path: '/:pathMatch(.*)*', 

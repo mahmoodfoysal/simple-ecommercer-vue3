@@ -11,9 +11,11 @@ const { product } = toRefs(props);
 </script>
 <template>
     <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <a href="#">
+        <router-link :to="{ name: 'ProductDetails', params: { id: product?.pro_id, slug: product?.pro_name.replace(/\s+/g, '-'), price: product?.price, rating: product?.rating, description: product?.description} }">
+            <a href="#">
             <img class="p-4 rounded-t-lg card-image" :src="product?.pro_image" alt="product image" />
         </a>
+        </router-link>
         <div class="px-5 pb-5">
             <a href="#">
                 <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{ product?.pro_name
