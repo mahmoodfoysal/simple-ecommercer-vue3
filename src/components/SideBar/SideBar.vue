@@ -15,7 +15,8 @@ categoryInfo.value = categories;
     <div id="accordion-collapse" data-accordion="collapse">
       <div v-for="(category, cIndex) in categoryInfo" :key="cIndex">
         <h2 :id="`accordion-collapse-heading-${cIndex}`">
-          <router-link :to="`/categorys/${category?.parent_cat_id}/${category?.parent_cat_name}`">
+          <router-link 
+          :to="{ name: 'ParentCategoryProducts', params: { id: category?.parent_cat_id, slug: category?.parent_cat_name.replace(/\s+/g, '-')} }">
           <button type="button"
             class="flex items-center justify-between w-full p-2 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
             :data-accordion-target="`#accordion-collapse-body-${cIndex}`" aria-expanded="false"
@@ -36,7 +37,7 @@ categoryInfo.value = categories;
           <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
               <h6 class="cursor-pointer font-medium mb-2" v-for="(subCategory, sIndex) in category?.parent_cat_sub_info"
                 :key="sIndex">
-                <router-link :to="`/category/${subCategory?.sub_cat_id}/${subCategory?.sub_cat_name}`">
+                <router-link :to="{ name: 'SubCategoryProducts', params: { id: subCategory?.sub_cat_id, slug: subCategory?.sub_cat_name.replace(/\s+/g, '-')} }">
                   {{ subCategory?.sub_cat_name }}
                 </router-link>
               </h6>
