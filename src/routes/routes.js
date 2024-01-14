@@ -13,13 +13,13 @@ const routes = [
         component: () => import('@/components/Products/Products.vue'),
     },
     {
-        path: '/categorys/:id',
-        name: 'productsByParentId', 
+        path: '/categorys/:id/:slug',
+        name: 'ParentCategoryProducts', 
         component: () => import('@/components/CategoryWiseProducts/ParentCategoryProducts.vue'),
     },
     {
-        path: '/category/:id',
-        name: 'ProductsSpecific', 
+        path: '/category/:id/:slug',
+        name: 'SubCategoryProducts', 
         component: () => import('@/components/CategoryWiseProducts/SubCategoryProducts.vue'),
     },
     {
@@ -42,8 +42,6 @@ const routes = [
         name: 'PageNotFound', 
         component: NotFound
     }
-    
-
 ]
 
 const router = createRouter({
