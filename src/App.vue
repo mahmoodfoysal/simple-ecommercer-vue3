@@ -7,16 +7,22 @@ import { ref } from 'vue';
 
 const receiveProductInfo = ref(null)
 
+let cart = [];
+
 const handleAddToCart = product => {
   receiveProductInfo.value = product;
-  // console.log(product);
+  const storeCart = cart.push(product);
+  // console.log(storeCart); 
+  // console.log(cart); 
 }
+
+// console.log(cart);
 
 </script>
 
 <template>
 <!-- navbar  -->
-<NavigationBar :productInfo="receiveProductInfo"></NavigationBar>
+<NavigationBar :productInfo="cart"></NavigationBar>
   <div class="grid sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 gap-3 mt-2">
     <div class="sm:col-span-12 md:col-span-6 lg:col-span-3">
       <!-- sidebar  -->

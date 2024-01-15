@@ -2,12 +2,15 @@
 import { toRefs, ref } from 'vue'
 const props = defineProps({
     productInfo: {
-        type: Object,
+        type: Array,
         default: null
     }
 });
 
 const {productInfo} = toRefs(props);
+
+const cart = ref(productInfo.value)
+
 
 </script>
 
@@ -26,7 +29,7 @@ const {productInfo} = toRefs(props);
                 <router-link to="/products"><p class="me-5 cursor-pointer font-medium">Products</p></router-link>
                 <router-link to="/contact"><p class="me-5 cursor-pointer font-medium">Contact</p></router-link>
                 <router-link to="/about"><p class="me-5 cursor-pointer font-medium">About Us</p></router-link>
-                <router-link to="/faq"><p class="me-5 cursor-pointer font-medium">{{productInfo?.pro_name}}</p></router-link>
+                <router-link to="/faq"><p class="me-5 cursor-pointer font-medium">{{cart}}</p></router-link>
             </div>
             <!-- menu item end  -->
             <div class="dropdown dropdown-end">
