@@ -19,7 +19,7 @@ const handleAddToCart = product => {
 </script>
 
 <template>
-
+    <p class="mt-5 mb-3">Home > Product Details > {{ route.params.slug.replaceAll('-', ' ') }}</p>
     <div
         class="mt-5 flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-100 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
         <img class="object-cover w-full rounded-t-lg h-100 md:h-auto md:w-[400px] md:rounded-none md:rounded-s-lg"

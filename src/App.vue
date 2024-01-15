@@ -9,6 +9,7 @@ const receiveProductInfo = ref(null)
 
 const handleAddToCart = product => {
   receiveProductInfo.value = product;
+  console.log(product);
 }
 
 </script>

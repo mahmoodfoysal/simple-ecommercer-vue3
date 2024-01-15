@@ -42,6 +42,7 @@ const handleAddToCart = product => {
 
 <template>
 <!-- <h1>Specific Product load here {{ route.params.id }}</h1> -->
+<p class="mt-5 mb-3">Home > Sub Category > {{ route.params.slug.replaceAll('-', ' ') }}</p>
 <h1 class="text-3xl text-center tracking-wide text-lime-500 font-bold mt-5 mb-5">Products</h1>
 <div class="grid sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 gap-3 mt-2">
         <div 

@@ -9,6 +9,8 @@ const props = defineProps({
 
 const {productInfo} = toRefs(props);
 
+console.log(productInfo.length) 
+
 </script>
 
 <template>
