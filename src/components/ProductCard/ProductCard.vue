@@ -7,10 +7,20 @@ const props = defineProps({
     }
 });
 
+let productObject = {};
+
 const emit = defineEmits()
 
 const handleAddToCart = (product) => {
-    emit('handle-add-to-cart', product);
+    const {pro_id, pro_image, pro_name, price, rating, description} = product;
+    productObject= {
+        pro_id, 
+        pro_image, 
+        pro_name, price, 
+        rating, 
+        description
+    }
+    emit('handle-add-to-cart', productObject);
 }
 
 const { product } = toRefs(props);

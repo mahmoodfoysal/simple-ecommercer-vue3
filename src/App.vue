@@ -3,13 +3,13 @@ import SideBar from './components/SideBar/SideBar.vue';
 import NavigationBar from './components/Shared/NavigationBar/NavigationBar.vue';
 import Footer from './components/Shared/Footer/Footer.vue';
 import Home from './components/Home/Home.vue';
-import { ref, toRefs, reactive } from 'vue';
+import { ref } from 'vue';
 
 const receiveProductInfo = ref(null)
 
 const handleAddToCart = product => {
   receiveProductInfo.value = product;
-  console.log(product);
+  // console.log(product);
 }
 
 </script>

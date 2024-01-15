@@ -44,6 +44,11 @@ const routes = [
         component: () => import('@/components/ProductCard/ProductDetail.vue'),
     },
     {
+        path: '/cart',
+        name: "Cart",
+        component: () => import('@/components/ViewCart/ViewCart.vue'),
+    },
+    {
         path: '/:pathMatch(.*)*', 
         name: 'PageNotFound', 
         component: NotFound

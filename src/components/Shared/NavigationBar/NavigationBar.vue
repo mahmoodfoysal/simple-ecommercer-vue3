@@ -1,5 +1,5 @@
 <script setup>
-import { toRefs } from 'vue'
+import { toRefs, ref } from 'vue'
 const props = defineProps({
     productInfo: {
         type: Object,
@@ -8,8 +8,6 @@ const props = defineProps({
 });
 
 const {productInfo} = toRefs(props);
-
-console.log(productInfo.length) 
 
 </script>
 
@@ -48,7 +46,9 @@ console.log(productInfo.length)
                         <span class="font-bold text-lg">8 Items</span>
                         <span class="text-info">Subtotal: $999</span>
                         <div class="card-actions">
-                            <button class="btn btn-primary btn-block">View cart</button>
+                            <router-link to="/cart">
+                                <button class="btn btn-primary btn-block">View cart</button>
+                            </router-link>
                         </div>
                     </div>
                 </div>
