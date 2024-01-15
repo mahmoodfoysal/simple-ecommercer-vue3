@@ -1,6 +1,6 @@
 <script setup>
 import products from '/data/allProducts.json';
-import { ref, watch, onMounted } from 'vue'
+import { ref } from 'vue'
 import { useRoute } from 'vue-router';
 const route = useRoute();
 const productReactive = ref(null);
@@ -8,8 +8,13 @@ const routeParamsId = ref(Number(route.params.id));
 
 productReactive.value = products;
 
-const filterProduct = products.filter(product => product.pro_id === routeParamsId.value);
-console.log(filterProduct[0].price);
+const filterProduct = productReactive.value.filter(product => product.pro_id === routeParamsId.value);
+
+const emit = defineEmits()
+
+const handleAddToCart = product => {
+    emit('handle-add-to-cart', product);
+}
 
 </script>
 
@@ -55,9 +60,10 @@ console.log(filterProduct[0].price);
             </div>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ filterProduct[0]?.description }}</p>
             <div>
-                <a href="#"
+                <button
+                    @click="handleAddToCart(filterProduct[0])"
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
-                    to cart</a>
+                    to cart</button>
             </div>
         </div>
     </div>
