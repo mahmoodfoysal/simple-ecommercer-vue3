@@ -32,6 +32,12 @@ onMounted(() => {
   filterProducts();
 });
 
+const emit = defineEmits();
+
+const handleAddToCart = product => {
+  emit('handle-add-to-cart', product);
+}
+
 </script>
 
 <template>
@@ -43,6 +49,7 @@ onMounted(() => {
         class="sm:col-span-12 md:col-span-6 lg:col-span-4">
             <ProductCard
             :product="product"
+            @handle-add-to-cart="handleAddToCart"
             ></ProductCard>
         </div>
     </div>

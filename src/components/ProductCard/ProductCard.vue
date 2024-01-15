@@ -7,11 +7,17 @@ const props = defineProps({
     }
 });
 
+const emit = defineEmits()
+
+const handleAddToCart = (product) => {
+    emit('handle-add-to-cart', product);
+}
+
 const { product } = toRefs(props);
 </script>
 <template>
     <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <router-link :to="{ name: 'ProductDetails', params: { id: product?.pro_id, slug: product?.pro_name.replace(/\s+/g, '-'), price: product?.price, rating: product?.rating, description: product?.description} }">
+        <router-link :to="{ name: 'ProductDetails', params: { id: product?.pro_id, slug: product?.pro_name.replace(/\s+/g, '-')}}">
             <a href="#">
             <img class="p-4 rounded-t-lg card-image" :src="product?.pro_image" alt="product image" />
         </a>
@@ -55,9 +61,10 @@ const { product } = toRefs(props);
             </div>
             <div class="flex items-center justify-between">
                 <span class="text-3xl font-bold text-gray-900 dark:text-white">{{ product?.price }}</span>
-                <a href="#"
+                <button
+                    @click="handleAddToCart(product)"
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
-                    to cart</a>
+                    to cart</button>
             </div>
         </div>
     </div>

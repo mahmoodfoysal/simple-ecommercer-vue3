@@ -4,8 +4,14 @@ import ProductCard from '../ProductCard/ProductCard.vue';
 import { ref } from 'vue';
 const productsInfo = ref(null);
 
-
 productsInfo.value = products;
+
+const emit = defineEmits();
+
+const handleAddToCart = product => {
+  emit('handle-add-to-cart', product);
+}
+
 </script>
 
 <template>
@@ -17,6 +23,7 @@ productsInfo.value = products;
 
         <ProductCard
         :product="product"
+        @handle-add-to-cart="handleAddToCart" 
        ></ProductCard>
         </div>
     </div>

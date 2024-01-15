@@ -1,4 +1,13 @@
 <script setup>
+import { toRefs } from 'vue'
+const props = defineProps({
+    productInfo: {
+        type: Object,
+        default: null
+    }
+});
+
+const {productInfo} = toRefs(props);
 
 </script>
 
@@ -17,7 +26,7 @@
                 <router-link to="/products"><p class="me-5 cursor-pointer font-medium">Products</p></router-link>
                 <router-link to="/contact"><p class="me-5 cursor-pointer font-medium">Contact</p></router-link>
                 <router-link to="/about"><p class="me-5 cursor-pointer font-medium">About Us</p></router-link>
-                <router-link to="/faq"><p class="me-5 cursor-pointer font-medium">FAQ</p></router-link>
+                <router-link to="/faq"><p class="me-5 cursor-pointer font-medium">{{productInfo?.pro_name}}</p></router-link>
             </div>
             <!-- menu item end  -->
             <div class="dropdown dropdown-end">
