@@ -1,5 +1,5 @@
 <script setup>
-import { toRefs, ref, defineProps } from 'vue'
+import { toRefs, ref, defineProps, watch } from 'vue'
 const props = defineProps({
     productInfo: {
         type: Object,
@@ -7,12 +7,21 @@ const props = defineProps({
     },
 });
 
-const {productInfo} = toRefs(props);
+let { productInfo } = toRefs(props);
 
-console.log(productInfo)
+let productArray = ref([]);
 
-// const cart = ref(productInfo.value)
-// const cartLength = ref(cart.value.length);
+productArray.value.push(productInfo.value);
+
+watch(() => {
+    return productInfo.value;
+}, (newValue, oldValue) => {
+    // Update productArray when productInfo changes
+    productArray.value = [newValue];
+});
+
+console.log(productArray.value[0])
+
 
 </script>
 
@@ -30,8 +39,8 @@ console.log(productInfo)
                 <router-link to="/"><p class="me-5 cursor-pointer font-medium">Home</p></router-link>
                 <router-link to="/products"><p class="me-5 cursor-pointer font-medium">Products</p></router-link>
                 <router-link to="/contact"><p class="me-5 cursor-pointer font-medium">Contact</p></router-link>
-                <router-link to="/about"><p class="me-5 cursor-pointer font-medium">About Us</p></router-link>
-                <router-link to="/faq"><p class="me-5 cursor-pointer font-medium">{{ productInfo?.pro_name }}</p></router-link>
+                <router-link to="/about"><p class="me-5 cursor-pointer font-medium">About</p></router-link>
+                <router-link to="/faq"><p class="me-5 cursor-pointer font-medium">FAQ</p></router-link>
             </div>
             <!-- menu item end  -->
             <div class="dropdown dropdown-end">
@@ -51,7 +60,7 @@ console.log(productInfo)
                         <span class="font-bold text-lg">8 Items</span>
                         <span class="text-info">Subtotal: $999</span>
                         <div class="card-actions">
-                            <router-link :to="{name: 'Cart', params: { productInfo: productInfo }}">
+                            <router-link :to="{ name: 'Cart', params: { productArray: productArray }}">
                                 <button class="btn btn-primary btn-block">View cart</button>
                             </router-link>
                         </div>

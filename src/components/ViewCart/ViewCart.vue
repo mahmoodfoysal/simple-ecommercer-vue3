@@ -1,18 +1,21 @@
 <script setup>
 import { toRefs, ref, defineProps } from 'vue';
 import { useRoute } from 'vue-router';
-const route = useRoute();
+// const route = useRoute();
+
+// console.log(route.params.productArray)
 
 const props = defineProps({
-   productInfo: {
-      type: Object,
-      default: null
-   }
+productArray: {
+   type: Array,
+   required: true,
+   default: () => []
+}
 })
 
-const {productInfo} = toRefs(props);
 
-console.log(productInfo)
+const {productArray} = toRefs(props);
+console.log('receive props',productArray)
 
 let quantity = ref(1);
 const increment = () => {
