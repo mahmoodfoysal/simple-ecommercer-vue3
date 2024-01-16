@@ -1,15 +1,15 @@
 <script setup>
 import products from '/data/allProducts.json';
 import ProductCard from '../ProductCard/ProductCard.vue';
-import { ref } from 'vue';
+import { ref, defineEmits } from 'vue';
 const productsInfo = ref(null);
 
 productsInfo.value = products;
 
-const emit = defineEmits();
+const emits = defineEmits();
 
 const handleAddToCart = product => {
-  emit('handle-add-to-cart', product);
+  emits('handle-add-to-cart', product);
 }
 
 </script>

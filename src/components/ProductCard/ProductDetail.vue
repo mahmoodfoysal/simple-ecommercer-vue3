@@ -1,6 +1,6 @@
 <script setup>
 import products from '/data/allProducts.json';
-import { ref } from 'vue'
+import { ref, defineEmits } from 'vue'
 import { useRoute } from 'vue-router';
 const route = useRoute();
 const productReactive = ref(null);
@@ -10,10 +10,10 @@ productReactive.value = products;
 
 const filterProduct = productReactive.value.filter(product => product.pro_id === routeParamsId.value);
 
-const emit = defineEmits()
+const emits = defineEmits()
 
 const handleAddToCart = product => {
-    emit('handle-add-to-cart', product);
+    emits('handle-add-to-cart', product);
 }
 
 </script>

@@ -1,11 +1,12 @@
 <script setup>
 import HomeSlider from '../HomePages/HomeSlider.vue';
 import Products from '../Products/Products.vue';
+import { defineEmits } from 'vue';
 
-const emit = defineEmits();
+const emits = defineEmits();
 
 const handleAddToCart = product => {
-    emit('handle-add-to-cart', product);
+    emits('handle-add-to-cart', product);
 }
 
 </script>

@@ -1,5 +1,5 @@
 <script setup>
-import { toRefs } from 'vue';
+import { toRefs, defineEmits } from 'vue';
 const props = defineProps({
     product: {
         type: Object,
@@ -9,7 +9,7 @@ const props = defineProps({
 
 let productObject = {};
 
-const emit = defineEmits()
+const emits = defineEmits()
 
 const handleAddToCart = (product) => {
     const {pro_id, pro_image, pro_name, price, rating, description} = product;
@@ -20,7 +20,7 @@ const handleAddToCart = (product) => {
         rating, 
         description
     }
-    emit('handle-add-to-cart', productObject);
+    emits('handle-add-to-cart', productObject);
 }
 
 const { product } = toRefs(props);

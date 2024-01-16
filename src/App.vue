@@ -11,9 +11,9 @@ let cart = [];
 
 const handleAddToCart = product => {
   receiveProductInfo.value = product;
-  const storeCart = cart.push(product);
+  cart.push(product);
   // console.log(storeCart); 
-  // console.log(cart); 
+  console.log(cart); 
 }
 
 // console.log(cart);
@@ -22,7 +22,9 @@ const handleAddToCart = product => {
 
 <template>
 <!-- navbar  -->
-<NavigationBar :productInfo="cart"></NavigationBar>
+<NavigationBar 
+:productInfo="receiveProductInfo"
+></NavigationBar>
   <div class="grid sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 gap-3 mt-2">
     <div class="sm:col-span-12 md:col-span-6 lg:col-span-3">
       <!-- sidebar  -->

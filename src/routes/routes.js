@@ -47,6 +47,7 @@ const routes = [
         path: '/cart',
         name: "Cart",
         component: () => import('@/components/ViewCart/ViewCart.vue'),
+        props: (route) => ({ productInfo: route.params.productInfo }),
     },
     {
         path: '/:pathMatch(.*)*', 

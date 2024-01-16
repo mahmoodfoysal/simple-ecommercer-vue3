@@ -1,16 +1,18 @@
 <script setup>
-import { toRefs, ref } from 'vue'
+import { toRefs, ref, defineProps } from 'vue'
 const props = defineProps({
     productInfo: {
-        type: Array,
+        type: Object,
         default: null
-    }
+    },
 });
 
 const {productInfo} = toRefs(props);
 
-const cart = ref(productInfo.value)
+console.log(productInfo)
 
+// const cart = ref(productInfo.value)
+// const cartLength = ref(cart.value.length);
 
 </script>
 
@@ -29,7 +31,7 @@ const cart = ref(productInfo.value)
                 <router-link to="/products"><p class="me-5 cursor-pointer font-medium">Products</p></router-link>
                 <router-link to="/contact"><p class="me-5 cursor-pointer font-medium">Contact</p></router-link>
                 <router-link to="/about"><p class="me-5 cursor-pointer font-medium">About Us</p></router-link>
-                <router-link to="/faq"><p class="me-5 cursor-pointer font-medium">{{cart}}</p></router-link>
+                <router-link to="/faq"><p class="me-5 cursor-pointer font-medium">{{ productInfo?.pro_name }}</p></router-link>
             </div>
             <!-- menu item end  -->
             <div class="dropdown dropdown-end">
@@ -49,7 +51,7 @@ const cart = ref(productInfo.value)
                         <span class="font-bold text-lg">8 Items</span>
                         <span class="text-info">Subtotal: $999</span>
                         <div class="card-actions">
-                            <router-link to="/cart">
+                            <router-link :to="{name: 'Cart', params: { productInfo: productInfo }}">
                                 <button class="btn btn-primary btn-block">View cart</button>
                             </router-link>
                         </div>
