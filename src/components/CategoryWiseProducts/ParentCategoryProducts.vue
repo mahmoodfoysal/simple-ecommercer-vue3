@@ -1,7 +1,7 @@
 <script setup>
 import products from '/data/allProducts.json';
 import ProductCard from '../ProductCard/ProductCard.vue';
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch, defineEmits } from 'vue';
 // import use route from vue-router 
 import { useRoute } from 'vue-router';
 
@@ -14,7 +14,6 @@ const filteredProducts = ref([]);
 
 specificProductInfo.value = products;
 
-
 const routeParamsId = ref(Number(route.params.id));
 
 const filterProducts = () => {
@@ -26,16 +25,15 @@ watch(() => route.params.id, () => {
   filterProducts();
 });
 
-
 onMounted(() => {
   specificProductInfo.value = products;
   filterProducts();
 });
 
-const emit = defineEmits();
+const emits = defineEmits();
 
 const handleAddToCart = product => {
-  emit('handle-add-to-cart', product);
+  emits('handle-add-to-cart', product);
 }
 
 </script>

@@ -14,7 +14,6 @@ const handleAddToCart = product => {
   cart.value.push(product);
 }
 </script>
-
 <template>
   <!-- navbar  -->
   <NavigationBar :cartItem="cart"></NavigationBar>
@@ -24,11 +23,10 @@ const handleAddToCart = product => {
       <SideBar></SideBar>
     </div>
     <div class="sm:col-span-12 md:col-span-6 lg:col-span-9">
-      <router-view :cartItem="cart" @handle-add-to-cart="handleAddToCart"></router-view>
+      <router-view :cartItems="cart" @handle-add-to-cart="handleAddToCart"></router-view>
       <!-- <home @handle-add-to-cart="handleAddToCart" :cartItem="cart"></home> -->
     </div>
   </div>
   <Footer></Footer>
 </template>
-
 <style scoped></style>
