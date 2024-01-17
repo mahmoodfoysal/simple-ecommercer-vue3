@@ -3,7 +3,7 @@ import { toRefs, ref, defineProps, computed } from 'vue'
 const props = defineProps({
     cartItems: {
         type: Array,
-        default: () => ([])
+        default: null,
     },
 });
 

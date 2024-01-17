@@ -1,6 +1,7 @@
 <script setup>
-import { toRefs, ref, defineProps, computed } from 'vue';
+import { toRefs, ref, defineProps, computed, defineEmits } from 'vue';
 
+// receive props 
 const props = defineProps({
    cartItems: {
       type: Array,
@@ -8,30 +9,43 @@ const props = defineProps({
    }
 });
 
-const { cartItems } = toRefs(props);
-console.log('receive props', cartItems.value)
+// define emits 
+const emits = defineEmits();
 
+// reactive props 
+const { cartItems } = toRefs(props);
+// console.log('receive props', cartItems.value)
+
+// declare quantity initial value 1 
 let quantity = ref(1);
 
+// quantity increment event handler 
 const increment = () => {
    quantity.value++;
 }
+
+// quantity decrement event handler 
 const decrement = () => {
    if (quantity.value > 1) {
       quantity.value--;
    }
 } 
 
+// declare all computed property 
+
+// calculate the sub total 
 let subTotal = computed(() => {
     return cartItems.value.reduce((initialVal, item) => {
         return initialVal + item.price;
     }, 0);
 });
 
+// calculate total vat amount 
 let totalVat = computed(() => {
    return subTotal.value * 0.15;
 })
 
+// delevary fee conditions
 let delevaryFee = computed(() => {
    if(cartItems.value.length <= 2) {
    return delevaryFee = 100;
@@ -44,16 +58,14 @@ else if(cartItems.value.length > 10) {
 }
 });
 
+// total amount calculate 
 let totalAmount = computed(() => {
    return subTotal.value + totalVat.value + delevaryFee;
 }) 
 
-
-
-
-
-
-console.log(totalVat)
+const handleRemoveItem = (item) => {
+   emits('handle-remove-item', item);
+}
 
 </script>
 <template>
@@ -77,7 +89,9 @@ console.log(totalVat)
                <span class="text-md">$ {{ cartItem?.price }}</span>
             </div>
             <div>
-               <span class="material-icons cursor-pointer mt-2 me-4">delete</span>
+               <span 
+               @click="handleRemoveItem(cartItem?.pro_id)"
+               class="material-icons cursor-pointer mt-2 me-4 hover:text-red-800">delete</span>
             </div>
          </div>
       </div>

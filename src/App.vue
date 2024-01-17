@@ -13,6 +13,14 @@ const handleAddToCart = product => {
   receiveProductInfo.value = product;
   cart.value.push(product);
 }
+
+const handleRemoveItem = item => {
+  // const findTargetProduct = cart.value.findIndex(cart.value.pro_id == item);
+  // console.log(findTargetProduct);
+  console.log(cart.value)
+
+  console.log(item)
+}
 </script>
 <template>
   <!-- navbar  -->
@@ -23,7 +31,11 @@ const handleAddToCart = product => {
       <SideBar></SideBar>
     </div>
     <div class="sm:col-span-12 md:col-span-6 lg:col-span-9">
-      <router-view :cartItems="cart" @handle-add-to-cart="handleAddToCart"></router-view>
+      <router-view 
+      :cartItems="cart" 
+      @handle-add-to-cart="handleAddToCart"
+      @handle-remove-item="handleRemoveItem"
+      ></router-view>
       <!-- <home @handle-add-to-cart="handleAddToCart" :cartItem="cart"></home> -->
     </div>
   </div>
