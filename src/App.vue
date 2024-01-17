@@ -8,18 +8,23 @@ import { ref } from 'vue';
 const receiveProductInfo = ref(null)
 
 const cart = ref([]);
+console.log(cart)
 
 const handleAddToCart = product => {
   receiveProductInfo.value = product;
   cart.value.push(product);
 }
 
-const handleRemoveItem = item => {
-  // const findTargetProduct = cart.value.findIndex(cart.value.pro_id == item);
-  // console.log(findTargetProduct);
-  console.log(cart.value)
 
-  console.log(item)
+const handleRemoveItem = (item) => {
+  const findTargetProduct = cart.value.find((cartItem) => cartItem.pro_id === item);
+  if (findTargetProduct) {
+    const index = cart.value.indexOf(findTargetProduct);
+    if (index !== -1) {
+      window.confirm('Are you sure want to delete!!!', cart.value.splice(index, 1));
+      alert("Product Remove from your cart!!!");
+    } 
+  } 
 }
 </script>
 <template>
