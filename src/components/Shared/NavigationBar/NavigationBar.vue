@@ -1,15 +1,25 @@
 <script setup>
-import { toRefs, ref, defineProps } from 'vue'
+import { toRefs, ref, defineProps, computed } from 'vue'
 const props = defineProps({
-    cartItem: {
+    cartItems: {
         type: Array,
         default: () => ([])
     },
 });
 
-let { cartItem } = toRefs(props);
+let { cartItems } = toRefs(props);
 
-let cartItemArray = ref(cartItem.value);
+let cartItemArray = ref(cartItems.value);
+
+// console.log(cartItemArray)
+
+let total = computed(() => {
+    return cartItemArray.value.reduce((acc, item) => {
+        return acc + item.price;
+    }, 0);
+});
+
+console.log(total)
 
 </script>
 
@@ -46,7 +56,7 @@ let cartItemArray = ref(cartItem.value);
                 <div tabindex="0" class="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
                     <div class="card-body">
                         <span class="font-bold text-lg">{{ cartItemArray?.length }} Items</span>
-                        <span class="text-info">Subtotal: $999</span>
+                        <span class="text-info">Subtotal: $ {{total}}</span>
                         <div class="card-actions">
                             <router-link :to="{ name: 'Cart'}">
                                 <button class="btn btn-primary btn-block">View cart</button>

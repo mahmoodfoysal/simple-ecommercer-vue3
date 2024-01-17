@@ -16,7 +16,7 @@ const handleAddToCart = product => {
 </script>
 <template>
   <!-- navbar  -->
-  <NavigationBar :cartItem="cart"></NavigationBar>
+  <NavigationBar :cartItems="cart"></NavigationBar>
   <div class="grid sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 gap-3 mt-2">
     <div class="sm:col-span-12 md:col-span-6 lg:col-span-3">
       <!-- sidebar  -->

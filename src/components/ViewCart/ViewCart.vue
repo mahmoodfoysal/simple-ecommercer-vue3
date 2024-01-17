@@ -1,5 +1,5 @@
 <script setup>
-import { toRefs, ref, defineProps } from 'vue';
+import { toRefs, ref, defineProps, computed } from 'vue';
 
 const props = defineProps({
    cartItems: {
@@ -12,6 +12,7 @@ const { cartItems } = toRefs(props);
 console.log('receive props', cartItems.value)
 
 let quantity = ref(1);
+
 const increment = () => {
    quantity.value++;
 }
@@ -19,7 +20,40 @@ const decrement = () => {
    if (quantity.value > 1) {
       quantity.value--;
    }
+} 
+
+let subTotal = computed(() => {
+    return cartItems.value.reduce((initialVal, item) => {
+        return initialVal + item.price;
+    }, 0);
+});
+
+let totalVat = computed(() => {
+   return subTotal.value * 0.15;
+})
+
+let delevaryFee = computed(() => {
+   if(cartItems.value.length <= 2) {
+   return delevaryFee = 100;
 }
+else if(cartItems.value.length > 2) {
+   return delevaryFee = 60;
+}
+else if(cartItems.value.length > 10) {
+   return delevaryFee = 0;
+}
+});
+
+let totalAmount = computed(() => {
+   return subTotal.value + totalVat.value + delevaryFee;
+}) 
+
+
+
+
+
+
+console.log(totalVat)
 
 </script>
 <template>
@@ -40,7 +74,7 @@ const decrement = () => {
                <button @click="increment" class="bg-white-700 px-5 text-xl">+</button>
             </div>
             <div>
-               <span class="text-md">{{ cartItem?.price }} Taka</span>
+               <span class="text-md">$ {{ cartItem?.price }}</span>
             </div>
             <div>
                <span class="material-icons cursor-pointer mt-2 me-4">delete</span>
@@ -52,27 +86,27 @@ const decrement = () => {
    </div>
 
    <!-- calculation section  -->
-   <section class="calculation-section">
-      <table style="width:100%">
+   <section class="calculation-section mt-3">
+      <table class="mt-3" style="width:100%">
          <tr>
             <td style="text-align: right; width:25%"></td>
             <td style="text-align: left; width:50%">Subtotal</td>
-            <td style="text-align: left; width:25%">data</td>
+            <td style="text-align: left; width:25%">$ {{ subTotal }}</td>
          </tr>
          <tr>
             <td style="text-align: left; width:25%"></td>
             <td style="text-align: left; width:50%">(+) VAT</td>
-            <td style="text-align: left; width:25%">data</td>
+            <td style="text-align: left; width:25%">$ {{ totalVat }}</td>
          </tr>
          <tr>
             <td style="text-align: left; width:25%"></td>
             <td style="text-align: left; width:50%">Delivery Fee</td>
-            <td style="text-align: left; width:25%">data</td>
+            <td style="text-align: left; width:25%">$ {{ delevaryFee }}</td>
          </tr>
          <tr>
             <td style="text-align: left; width:25%"></td>
-            <td style="text-align: left; width:50%">(-) Less discount on TP (3%)</td>
-            <td style="text-align: left; width:25%">data</td>
+            <td style="text-align: left; width:50%">Total Amount</td>
+            <td style="text-align: left; width:25%">$ {{ totalAmount }}</td>
          </tr>
       </table>
    </section>
