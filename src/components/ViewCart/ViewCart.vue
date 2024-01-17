@@ -65,7 +65,10 @@ let totalAmount = computed(() => {
 
 const handleRemoveItem = (item) => {
    emits('handle-remove-item', item);
-}
+};
+
+const sameProduct = cartItems.value.filter(cartItem => cartItem.pro_id === cartItem.pro_id);
+console.log("storeing same product", sameProduct)
 
 </script>
 <template>
@@ -123,7 +126,11 @@ const handleRemoveItem = (item) => {
             <td style="text-align: left; width:25%">$ {{ totalAmount }}</td>
          </tr>
       </table>
+      
    </section>
+   <div class="flex justify-end mr-[17%] mt-5">
+      <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Check Out</button>
+   </div>
 </template>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');
