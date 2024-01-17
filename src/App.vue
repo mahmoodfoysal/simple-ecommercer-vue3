@@ -2,7 +2,7 @@
 import SideBar from './components/SideBar/SideBar.vue';
 import NavigationBar from './components/Shared/NavigationBar/NavigationBar.vue';
 import Footer from './components/Shared/Footer/Footer.vue';
-import Home from './components/Home/Home.vue';
+// import Home from './components/Home/Home.vue';
 import { ref } from 'vue';
 
 const receiveProductInfo = ref(null)
@@ -16,20 +16,16 @@ const handleAddToCart = product => {
 </script>
 
 <template>
-<!-- navbar  -->
-<NavigationBar 
-:cartItem="cart"
-></NavigationBar>
+  <!-- navbar  -->
+  <NavigationBar :cartItem="cart"></NavigationBar>
   <div class="grid sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 gap-3 mt-2">
     <div class="sm:col-span-12 md:col-span-6 lg:col-span-3">
       <!-- sidebar  -->
-      <SideBar 
-      ></SideBar>
+      <SideBar></SideBar>
     </div>
     <div class="sm:col-span-12 md:col-span-6 lg:col-span-9">
-      <home
-      @handle-add-to-cart="handleAddToCart"
-      ></home>
+      <router-view :cartItem="cart" @handle-add-to-cart="handleAddToCart"></router-view>
+      <!-- <home @handle-add-to-cart="handleAddToCart" :cartItem="cart"></home> -->
     </div>
   </div>
   <Footer></Footer>

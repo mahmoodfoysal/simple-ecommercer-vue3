@@ -1,21 +1,16 @@
 <script setup>
 import { toRefs, ref, defineProps } from 'vue';
-import { useRoute } from 'vue-router';
 // const route = useRoute();
 
-// console.log(route.params.productArray)
-
 const props = defineProps({
-productArray: {
-   type: Array,
-   required: true,
-   default: () => []
-}
-})
+   cartItem: {
+      type: Array,
+      default: () => ([]),
+   }
+});
 
-
-const {productArray} = toRefs(props);
-console.log('receive props',productArray)
+const { cartItem } = toRefs(props);
+console.log('receive props', cartItem.value)
 
 let quantity = ref(1);
 const increment = () => {
@@ -31,7 +26,7 @@ const decrement = () => {
 </script>
 
 <template>
-   <section  class="flex justify-center">
+   <section class="flex justify-center">
       <div
          class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
          <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
@@ -49,7 +44,11 @@ const decrement = () => {
             <span class="material-icons cursor-pointer mt-2 me-4">delete</span>
          </div>
       </div>
+      
    </section>
+   <div>
+         {{ cartItem }}
+      </div>
 </template>
 
 <style scoped>

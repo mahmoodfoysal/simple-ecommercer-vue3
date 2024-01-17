@@ -1,5 +1,5 @@
 <script setup>
-import { toRefs, ref, defineProps, watch } from 'vue'
+import { toRefs, ref, defineProps } from 'vue'
 const props = defineProps({
     cartItem: {
         type: Array,
@@ -48,7 +48,7 @@ let cartItemArray = ref(cartItem.value);
                         <span class="font-bold text-lg">{{ cartItemArray?.length }} Items</span>
                         <span class="text-info">Subtotal: $999</span>
                         <div class="card-actions">
-                            <router-link :to="{ name: 'Cart', params: { productArray: productArray }}">
+                            <router-link :to="{ name: 'Cart'}">
                                 <button class="btn btn-primary btn-block">View cart</button>
                             </router-link>
                         </div>
