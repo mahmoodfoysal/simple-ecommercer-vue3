@@ -67,7 +67,10 @@ const handleRemoveItem = (item) => {
    emits('handle-remove-item', item);
 };
 
-const sameProduct = cartItems.value.filter(cartItem => cartItem.pro_id === cartItem.pro_id);
+const sameProduct = cartItems.value.filter(cartItem => cartItem.pro_id === 1000);
+if(sameProduct.length > 1) {
+   console.log("did not add")
+}
 console.log("storeing same product", sameProduct)
 
 </script>
