@@ -3,7 +3,7 @@ import { toRefs, ref, defineProps, computed } from 'vue'
 const props = defineProps({
     cartItems: {
         type: Array,
-        default: null,
+        default: () => ([]),
     },
 });
 
@@ -20,6 +20,7 @@ let total = computed(() => {
 });
 
 console.log(total)
+
 
 </script>
 
@@ -58,7 +59,7 @@ console.log(total)
                         <span class="font-bold text-lg">{{ cartItemArray?.length }} Items</span>
                         <span class="text-info">Subtotal: $ {{total}}</span>
                         <div class="card-actions">
-                            <router-link :to="{ name: 'Cart'}">
+                            <router-link v-if="cartItemArray?.length > 0" :to="{ name: 'Cart'}">
                                 <button class="btn btn-primary btn-block">View cart</button>
                             </router-link>
                         </div>
