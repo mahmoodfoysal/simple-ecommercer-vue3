@@ -46,7 +46,7 @@ let totalVat = computed(() => {
 })
 
 // count how many product in the cart 
-const cartQuantity = computed(() => {
+let cartQuantity = computed(() => {
     const totalProduct = cartItems.value.reduce((total, item) => {
       return total + item.quantity;
    }, 0);
@@ -55,20 +55,20 @@ const cartQuantity = computed(() => {
 
 // delevary fee conditions
 let delevaryFee = computed(() => {
-   if (cartQuantity.value <= 2) {
-      return delevaryFee = 100;
-   }
-   else if (cartQuantity.value > 2) {
-      return delevaryFee = 60;
+   if (cartQuantity.value <= 4) {
+      return delevaryFee.value = 100;
    }
    else if (cartQuantity.value > 10) {
-      return delevaryFee = 0;
+      return delevaryFee.value = 20;
+   }
+   else { 
+      return delevaryFee.value = 60;
    }
 });
 
 // total amount calculate 
 let totalAmount = computed(() => {
-   return subTotal.value + totalVat.value + delevaryFee;
+   return subTotal.value + totalVat.value + delevaryFee.value;
 })
 
 const handleRemoveItem = (item) => {
