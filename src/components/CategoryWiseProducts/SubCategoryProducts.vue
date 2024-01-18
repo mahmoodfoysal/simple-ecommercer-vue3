@@ -12,11 +12,13 @@ const route = useRoute();
 const specificProductInfo = ref(null);
 const filteredProducts = ref([]);
 
+// reactive product value here 
 specificProductInfo.value = products;
 
-
+// find the sub category from the params 
 const routeParamsId = ref(Number(route.params.id));
 
+// filter the product where sub category are same 
 const filterProducts = () => {
   filteredProducts.value = specificProductInfo.value.filter(product => product.sub_category === routeParamsId.value);
 };
@@ -26,14 +28,15 @@ watch(() => route.params.id, () => {
   filterProducts();
 });
 
-
 onMounted(() => {
   specificProductInfo.value = products;
   filterProducts();
 });
 
+// define emit here 
 const emits = defineEmits();
 
+// declare event handler for pass the data 
 const handleAddToCart = product => {
   emits('handle-add-to-cart', product);
 }
@@ -57,8 +60,5 @@ const handleAddToCart = product => {
 </template>
 
 <style scoped>
-.card-image {
-    width: 100%;
-    height: 280px;
-}
+
 </style>

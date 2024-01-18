@@ -5,8 +5,8 @@ import Footer from './components/Shared/Footer/Footer.vue';
 // import Home from './components/Home/Home.vue';
 import { ref } from 'vue';
 
+// declare all ref for reactivation 
 const receiveProductInfo = ref(null)
-
 const cart = ref([]);
 const pro_id = ref('');
 const pro_image = ref('');
@@ -14,8 +14,9 @@ const pro_name = ref('');
 const price = ref('');
 const quantity = ref(1);
 
-console.log(cart)
+// console.log(cart)
 
+// event handler for adding product to the cart 
 const handleAddToCart = product => {
   receiveProductInfo.value = product;
   const isProductInCart = cart.value.find(cartItem => cartItem.pro_id === product.pro_id);
@@ -36,11 +37,9 @@ const handleAddToCart = product => {
         // console.log("Product with the same pro_id already exists in the Cart");
       }
   }
-  else {
-    
-  }
 }
 
+// event handler for increment cart product quantity
 const handleIncrementCartQuantity = (proID) => {
   const isProductInCart = cart.value.find(cartItem => cartItem.pro_id === proID);
   if(isProductInCart) {
@@ -52,6 +51,7 @@ const handleIncrementCartQuantity = (proID) => {
   }
 }
 
+// event handler for decrement cart product quantity 
 const handleDecrementCartQuantity = (proID) => {
   const isProductInCart = cart.value.find(cartItem => cartItem.pro_id === proID);
   if(isProductInCart) {
@@ -65,6 +65,7 @@ const handleDecrementCartQuantity = (proID) => {
   }
 }
 
+// remove item from the cart 
 const handleRemoveItem = (item) => {
   const findTargetProduct = cart.value.find((cartItem) => cartItem.pro_id === item);
   if (findTargetProduct) {
@@ -75,9 +76,6 @@ const handleRemoveItem = (item) => {
     } 
   } 
 }
-
-
-
 
 </script>
 <template>

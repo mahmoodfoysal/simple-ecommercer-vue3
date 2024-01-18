@@ -1,5 +1,6 @@
 <script setup>
 import { toRefs, ref, defineProps, computed } from 'vue'
+// declare props 
 const props = defineProps({
     cartItems: {
         type: Array,
@@ -7,12 +8,15 @@ const props = defineProps({
     },
 });
 
+// reactive the props 
 let { cartItems } = toRefs(props);
 
+// declare all ref for reactivation 
 let cartItemArray = ref(cartItems.value);
 
 // console.log(cartItemArray)
 
+// calculate the total product amount 
 let total = computed(() => {
     const totalQuantityWithPrice = cartItems.value.reduce((total, item) => {
       return total + (item.price * item.quantity);
@@ -20,6 +24,7 @@ let total = computed(() => {
    return totalQuantityWithPrice;
 });
 
+// calculate the total product quantity 
 const cartQuantity = computed(() => {
     const totalProduct = cartItems.value.reduce((total, item) => {
       return total + item.quantity;

@@ -1,17 +1,28 @@
 <script setup>
+// import json data from the root 
 import products from '/data/allProducts.json';
+// import for reactive and data pass to the parent 
 import { ref, defineEmits } from 'vue'
+// import useRouter for using router data from vue router 
 import { useRoute } from 'vue-router';
+
+// declare route from vue router for gate data from the params 
 const route = useRoute();
+
+// declare all ref are here for reactivate data 
 const productReactive = ref(null);
 const routeParamsId = ref(Number(route.params.id));
 
+// reactive the json data 
 productReactive.value = products;
 
+// filter the product from product array where id match and give the result 
 const filterProduct = productReactive.value.filter(product => product.pro_id === routeParamsId.value);
 
+// declare emit here for data pass to the parent 
 const emits = defineEmits()
 
+// declare event handler for passing data parameter to the parent 
 const handleAddToCart = product => {
     emits('handle-add-to-cart', product);
 }

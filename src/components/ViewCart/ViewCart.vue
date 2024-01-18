@@ -1,5 +1,5 @@
 <script setup>
-import { toRefs, ref, defineProps, computed, defineEmits } from 'vue';
+import { toRefs, defineProps, computed, defineEmits } from 'vue';
 
 // receive props 
 const props = defineProps({
@@ -9,27 +9,23 @@ const props = defineProps({
    }
 });
 
-// define emits 
+// reactive cart props props 
+const { cartItems } = toRefs(props);
+
+// define emits for data pass to the parent
 const emits = defineEmits();
 
-// reactive props 
-const { cartItems } = toRefs(props);
-// console.log('receive props', cartItems.value)
-
-// declare quantity initial value 1 
-let quantity = ref(1);
-
-// quantity increment event handler 
+// quantity increment event handler sent to the parent
 const increment = (proID) => {
    emits('cart-product-quantity-increment', proID);
 }
 
-// quantity decrement event handler 
+// quantity decrement event handler sent to the parent
 const decrement = (proID) => {
    emits('cart-product-quantity-decrement', proID)
 }
 
-// declare all computed property 
+// declare all computed property for cart calculation
 
 // calculate the sub total 
 let subTotal = computed(() => {
@@ -45,15 +41,7 @@ let totalVat = computed(() => {
    return subTotal.value * 0.15;
 })
 
-// count how many product in the cart 
-let cartQuantity = computed(() => {
-    const totalProduct = cartItems.value.reduce((total, item) => {
-      return total + item.quantity;
-   }, 0);
-   return totalProduct;
-}) 
-
-// delevary fee conditions
+// delevary fee amount calculate and using condition
 let delevaryFee = computed(() => {
    if (cartQuantity.value <= 4) {
       return delevaryFee.value = 100;
@@ -66,11 +54,20 @@ let delevaryFee = computed(() => {
    }
 });
 
-// total amount calculate 
+// show total product quantity in the cart
+let cartQuantity = computed(() => {
+    const totalProduct = cartItems.value.reduce((total, item) => {
+      return total + item.quantity;
+   }, 0);
+   return totalProduct;
+});
+
+// total amount calculate
 let totalAmount = computed(() => {
    return subTotal.value + totalVat.value + delevaryFee.value;
 })
 
+// remove items from the cart 
 const handleRemoveItem = (item) => {
    emits('handle-remove-item', item);
 };

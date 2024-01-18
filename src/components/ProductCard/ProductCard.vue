@@ -7,10 +7,16 @@ const props = defineProps({
     }
 });
 
+// reactive the product props 
+const { product } = toRefs(props);
+
+// declare a empty object for store data when pass the data need this 
 let productObject = {};
 
+// declare emit for add to cart data 
 const emits = defineEmits()
 
+// event handler for add to cart button. data pass to the parent 
 const handleAddToCart = (product) => {
     const {pro_id, pro_image, pro_name, price, rating, description} = product;
     productObject= {
@@ -23,7 +29,7 @@ const handleAddToCart = (product) => {
     emits('handle-add-to-cart', productObject);
 }
 
-const { product } = toRefs(props);
+
 </script>
 <template>
     <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">

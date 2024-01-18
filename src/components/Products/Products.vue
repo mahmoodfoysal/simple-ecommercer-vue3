@@ -1,13 +1,19 @@
 <script setup>
+// load json data from the json file 
 import products from '/data/allProducts.json';
 import ProductCard from '../ProductCard/ProductCard.vue';
 import { ref, defineEmits } from 'vue';
+
+// declare all ref are here for reactivation 
 const productsInfo = ref(null);
 
+// reactive the json data 
 productsInfo.value = products;
 
+// declare emit for using emit 
 const emits = defineEmits();
 
+// event handler for pass the data to the parent 
 const handleAddToCart = product => {
   emits('handle-add-to-cart', product);
 }
