@@ -67,12 +67,6 @@ const handleRemoveItem = (item) => {
    emits('handle-remove-item', item);
 };
 
-const sameProduct = cartItems.value.filter(cartItem => cartItem.pro_id === 1000);
-if(sameProduct.length > 1) {
-   console.log("did not add")
-}
-console.log("storeing same product", sameProduct)
-
 </script>
 <template>
    <section class="flex justify-center">
@@ -88,7 +82,7 @@ console.log("storeing same product", sameProduct)
             </div>
             <div class="flex">
                <button @click="decrement" class="bg-white-700 px-5 text-xl">-</button>
-               <p class="text-xl">{{ quantity }}</p>
+               <p class="text-xl">{{ cartItem?.quantity }}</p>
                <button @click="increment" class="bg-white-700 px-5 text-xl">+</button>
             </div>
             <div>

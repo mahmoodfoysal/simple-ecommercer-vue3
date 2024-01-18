@@ -8,15 +8,43 @@ import { ref } from 'vue';
 const receiveProductInfo = ref(null)
 
 const cart = ref([]);
+const pro_id = ref('');
+const pro_image = ref('');
+const pro_name = ref('');
+const price = ref('');
+const quantity = ref(1);
+
 console.log(cart)
 
 const handleAddToCart = product => {
   receiveProductInfo.value = product;
-  cart.value.push(product);
+  const isProductInCart = cart.value.find(cartItem => cartItem.pro_id === product.pro_id);
+  if (!isProductInCart) {
+    cart.value.push({
+      pro_id: product.pro_id,
+      pro_image: product.pro_image,
+      pro_name: product.pro_name,
+      price: product.price,
+      quantity: quantity.value,
+    });
+    console.log("Product Added to Cart");
+  } 
+  else if(isProductInCart) {
+      const index = cart.value.indexOf(isProductInCart);
+      if(index !== -1) {
+        console.log("Found");
+        cart.value[index].quantity++;
+      }
+  }
+  else {
+    
+    console.log("Product with the same pro_id already exists in the Cart");
+  }
 }
 
-
 const handleRemoveItem = (item) => {
+  // check the same product have in the cart 
+console.log(sameProduct)
   const findTargetProduct = cart.value.find((cartItem) => cartItem.pro_id === item);
   if (findTargetProduct) {
     const index = cart.value.indexOf(findTargetProduct);
@@ -26,6 +54,10 @@ const handleRemoveItem = (item) => {
     } 
   } 
 }
+
+
+
+
 </script>
 <template>
   <!-- navbar  -->
