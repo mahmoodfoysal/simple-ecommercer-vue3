@@ -20,15 +20,17 @@ const { cartItems } = toRefs(props);
 let quantity = ref(1);
 
 // quantity increment event handler 
-const increment = () => {
-   quantity.value++;
+const increment = (proID) => {
+   emits('cart-product-quantity-increment', proID);
 }
 
 // quantity decrement event handler 
-const decrement = () => {
-   if (quantity.value > 1) {
-      quantity.value--;
-   }
+const decrement = (proID) => {
+   // if (quantity.value > 1) {
+   //    quantity.value--;
+   // }
+
+   emits('cart-product-quantity-decrement', proID)
 } 
 
 // declare all computed property 
@@ -81,9 +83,9 @@ const handleRemoveItem = (item) => {
                </h5>
             </div>
             <div class="flex">
-               <button @click="decrement" class="bg-white-700 px-5 text-xl">-</button>
+               <button @click="decrement(cartItem?.pro_id)" class="bg-white-700 px-5 text-xl hover:text-blue-800">-</button>
                <p class="text-xl">{{ cartItem?.quantity }}</p>
-               <button @click="increment" class="bg-white-700 px-5 text-xl">+</button>
+               <button @click="increment(cartItem?.pro_id)" class="bg-white-700 px-5 text-xl hover:text-blue-800">+</button>
             </div>
             <div>
                <span class="text-md">$ {{ cartItem?.price }}</span>

@@ -27,24 +27,45 @@ const handleAddToCart = product => {
       price: product.price,
       quantity: quantity.value,
     });
-    console.log("Product Added to Cart");
+    // console.log("Product Added to Cart");
   } 
   else if(isProductInCart) {
       const index = cart.value.indexOf(isProductInCart);
       if(index !== -1) {
-        console.log("Found");
         cart.value[index].quantity++;
+        // console.log("Product with the same pro_id already exists in the Cart");
       }
   }
   else {
     
-    console.log("Product with the same pro_id already exists in the Cart");
+  }
+}
+
+const handleIncrementCartQuantity = (proID) => {
+  const isProductInCart = cart.value.find(cartItem => cartItem.pro_id === proID);
+  if(isProductInCart) {
+    const index = cart.value.indexOf(isProductInCart);
+    if(index !== -1) {
+      // console.log("increment found"); 
+      cart.value[index].quantity++;
+    }
+  }
+}
+
+const handleDecrementCartQuantity = (proID) => {
+  const isProductInCart = cart.value.find(cartItem => cartItem.pro_id === proID);
+  if(isProductInCart) {
+    const index = cart.value.indexOf(isProductInCart);
+    if(index !== -1) {
+      // console.log("Decrement found"); 
+      if(cart.value[index].quantity > 1) {
+        cart.value[index].quantity--;
+      }
+    }
   }
 }
 
 const handleRemoveItem = (item) => {
-  // check the same product have in the cart 
-console.log(sameProduct)
   const findTargetProduct = cart.value.find((cartItem) => cartItem.pro_id === item);
   if (findTargetProduct) {
     const index = cart.value.indexOf(findTargetProduct);
@@ -74,6 +95,8 @@ console.log(sameProduct)
       :cartItems="cart" 
       @handle-add-to-cart="handleAddToCart"
       @handle-remove-item="handleRemoveItem"
+      @cart-product-quantity-increment="handleIncrementCartQuantity"
+      @cart-product-quantity-decrement="handleDecrementCartQuantity"
       ></router-view>
       <!-- <home @handle-add-to-cart="handleAddToCart" :cartItem="cart"></home> -->
     </div>
