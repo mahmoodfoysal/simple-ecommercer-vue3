@@ -26,20 +26,18 @@ const increment = (proID) => {
 
 // quantity decrement event handler 
 const decrement = (proID) => {
-   // if (quantity.value > 1) {
-   //    quantity.value--;
-   // }
-
    emits('cart-product-quantity-decrement', proID)
-} 
+}
 
 // declare all computed property 
 
 // calculate the sub total 
 let subTotal = computed(() => {
-    return cartItems.value.reduce((initialVal, item) => {
-        return initialVal + item.price;
-    }, 0);
+   const totalQuantityWithPrice = cartItems.value.reduce((total, item) => {
+      return total + (item.price * item.quantity);
+   }, 0);
+
+   return totalQuantityWithPrice;
 });
 
 // calculate total vat amount 
@@ -47,23 +45,31 @@ let totalVat = computed(() => {
    return subTotal.value * 0.15;
 })
 
+// count how many product in the cart 
+const cartQuantity = computed(() => {
+    const totalProduct = cartItems.value.reduce((total, item) => {
+      return total + item.quantity;
+   }, 0);
+   return totalProduct;
+}) 
+
 // delevary fee conditions
 let delevaryFee = computed(() => {
-   if(cartItems.value.length <= 2) {
-   return delevaryFee = 100;
-}
-else if(cartItems.value.length > 2) {
-   return delevaryFee = 60;
-}
-else if(cartItems.value.length > 10) {
-   return delevaryFee = 0;
-}
+   if (cartQuantity.value <= 2) {
+      return delevaryFee = 100;
+   }
+   else if (cartQuantity.value > 2) {
+      return delevaryFee = 60;
+   }
+   else if (cartQuantity.value > 10) {
+      return delevaryFee = 0;
+   }
 });
 
 // total amount calculate 
 let totalAmount = computed(() => {
    return subTotal.value + totalVat.value + delevaryFee;
-}) 
+})
 
 const handleRemoveItem = (item) => {
    emits('handle-remove-item', item);
@@ -83,17 +89,18 @@ const handleRemoveItem = (item) => {
                </h5>
             </div>
             <div class="flex">
-               <button @click="decrement(cartItem?.pro_id)" class="bg-white-700 px-5 text-xl hover:text-blue-800">-</button>
+               <button @click="decrement(cartItem?.pro_id)"
+                  class="bg-white-700 px-5 text-xl hover:text-blue-800">-</button>
                <p class="text-xl">{{ cartItem?.quantity }}</p>
-               <button @click="increment(cartItem?.pro_id)" class="bg-white-700 px-5 text-xl hover:text-blue-800">+</button>
+               <button @click="increment(cartItem?.pro_id)"
+                  class="bg-white-700 px-5 text-xl hover:text-blue-800">+</button>
             </div>
             <div>
-               <span class="text-md">$ {{ cartItem?.price }}</span>
+               <span class="text-md">$ {{ (cartItem?.price * cartItem.quantity) }}</span>
             </div>
             <div>
-               <span 
-               @click="handleRemoveItem(cartItem?.pro_id)"
-               class="material-icons cursor-pointer mt-2 me-4 hover:text-red-800">delete</span>
+               <span @click="handleRemoveItem(cartItem?.pro_id)"
+                  class="material-icons cursor-pointer mt-2 me-4 hover:text-red-800">delete</span>
             </div>
          </div>
       </div>
@@ -125,10 +132,12 @@ const handleRemoveItem = (item) => {
             <td style="text-align: left; width:25%">$ {{ totalAmount }}</td>
          </tr>
       </table>
-      
+
    </section>
    <div class="flex justify-end mr-[17%] mt-5">
-      <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Check Out</button>
+      <button
+         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Check
+         Out</button>
    </div>
 </template>
 <style scoped>
@@ -141,5 +150,4 @@ const handleRemoveItem = (item) => {
 
 .calculation-section {
    border-top: 1px solid black;
-}
-</style>
+}</style>
