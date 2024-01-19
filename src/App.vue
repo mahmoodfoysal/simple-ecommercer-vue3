@@ -97,7 +97,6 @@ const handleRemoveItem = (item) => {
       @cart-product-quantity-increment="handleIncrementCartQuantity"
       @cart-product-quantity-decrement="handleDecrementCartQuantity"
       ></router-view>
-      <!-- <home @handle-add-to-cart="handleAddToCart" :cartItem="cart"></home> -->
     </div>
   </div>
   <Footer></Footer>

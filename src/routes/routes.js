@@ -48,6 +48,11 @@ const routes = [
         component: () => import('@/components/ViewCart/ViewCart.vue'),
     },
     {
+        path: '/check-out/:slug',
+        name: 'Checkout',
+        component: () => import('@/components/CheckOut/CheckOut.vue'),
+    },
+    {
         path: '/:pathMatch(.*)*', 
         name: 'PageNotFound', 
         component: NotFound
