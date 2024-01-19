@@ -5,7 +5,7 @@ import { toRefs, defineProps, computed, defineEmits } from 'vue';
 const props = defineProps({
    cartItems: {
       type: Array,
-      default: () => ([]),
+      default: () => [],
    }
 });
 
@@ -13,7 +13,7 @@ const props = defineProps({
 const { cartItems } = toRefs(props);
 
 // define emits for data pass to the parent
-const emits = defineEmits();
+const emits = defineEmits(['handle-add-to-cart','cart-product-quantity-increment','cart-product-quantity-decrement','handle-remove-item']);
 
 // quantity increment event handler sent to the parent
 const increment = (proID) => {
@@ -44,19 +44,19 @@ let totalVat = computed(() => {
 // delevary fee amount calculate and using condition
 let delevaryFee = computed(() => {
    if (cartQuantity.value <= 4) {
-      return delevaryFee.value = 100;
+      return  100;
    }
    else if (cartQuantity.value > 10) {
-      return delevaryFee.value = 20;
+      return 20;
    }
-   else { 
-      return delevaryFee.value = 60;
+   else {
+      return 60;
    }
 });
 
 // show total product quantity in the cart
 let cartQuantity = computed(() => {
-    const totalProduct = cartItems.value.reduce((total, item) => {
+   const totalProduct = cartItems.value.reduce((total, item) => {
       return total + item.quantity;
    }, 0);
    return totalProduct;
@@ -147,4 +147,5 @@ const handleRemoveItem = (item) => {
 
 .calculation-section {
    border-top: 1px solid black;
-}</style>
+}
+</style>

@@ -11,7 +11,7 @@ const productsInfo = ref(null);
 productsInfo.value = products;
 
 // declare emit for using emit 
-const emits = defineEmits();
+const emits = defineEmits(['handle-add-to-cart']);
 
 // event handler for pass the data to the parent 
 const handleAddToCart = product => {

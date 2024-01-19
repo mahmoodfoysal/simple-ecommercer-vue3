@@ -31,7 +31,7 @@ onMounted(() => {
 });
 
 // define emits here 
-const emits = defineEmits();
+const emits = defineEmits(['handle-add-to-cart']);
 
 // event handler for add to cart 
 const handleAddToCart = product => {

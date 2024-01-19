@@ -2,8 +2,9 @@
 import SideBar from './components/SideBar/SideBar.vue';
 import NavigationBar from './components/Shared/NavigationBar/NavigationBar.vue';
 import Footer from './components/Shared/Footer/Footer.vue';
-// import Home from './components/Home/Home.vue';
-import { ref } from 'vue';
+import { ref, defineEmits } from 'vue';
+
+const emits = defineEmits(['handle-add-to-car', 'handle-remove-item', 'cart-product-quantity-increment', 'cart-product-quantity-decrement'])
 
 // declare all ref for reactivation 
 const receiveProductInfo = ref(null)

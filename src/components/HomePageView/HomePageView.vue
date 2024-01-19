@@ -1,10 +1,18 @@
 <script setup>
 import HomeSlider from '../HomePages/HomeSlider.vue';
 import Products from '../Products/Products.vue';
-import { defineEmits } from 'vue';
+import { defineProps ,defineEmits } from 'vue';
+
+// define props 
+    const props = defineProps({
+   cartItems: {
+      type: Array,
+      default: () => [],
+   }
+})
 
 // declare emit are here 
-const emits = defineEmits();
+const emits = defineEmits(['handle-add-to-cart', 'cart-product-quantity-increment','cart-product-quantity-decrement','handle-remove-item']);
 
 // event handler pass for add to cart 
 const handleAddToCart = product => {

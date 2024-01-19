@@ -20,7 +20,7 @@ productReactive.value = products;
 const filterProduct = productReactive.value.filter(product => product.pro_id === routeParamsId.value);
 
 // declare emit here for data pass to the parent 
-const emits = defineEmits()
+const emits = defineEmits(['handle-add-to-cart'])
 
 // declare event handler for passing data parameter to the parent 
 const handleAddToCart = product => {

@@ -6,4 +6,6 @@ import router from './routes/routes.js';
 
 
 
-createApp(App).use(router).mount('#app')
+createApp(App)
+.use(router)
+.mount('#app')

@@ -14,7 +14,7 @@ const { product } = toRefs(props);
 let productObject = {};
 
 // declare emit for add to cart data 
-const emits = defineEmits()
+const emits = defineEmits(['handle-add-to-cart'])
 
 // event handler for add to cart button. data pass to the parent 
 const handleAddToCart = (product) => {
