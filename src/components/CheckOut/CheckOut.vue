@@ -33,7 +33,7 @@ const cardNo = ref(null);
 const nameOfCard = ref('');
 const cardExpireDate = ref('');
 const cardCVC = ref(null);
-
+const productInformation = ref('');
 
 
 
@@ -110,7 +110,8 @@ const handleInformationForm = () => {
         cardNo: cardNo.value,
         nameOfCard: nameOfCard.value,
         cardExpireDate: cardExpireDate.value,
-        cardCVC: cardCVC.value
+        cardCVC: cardCVC.value,
+        productInformation: cartItems.value
     }
 
     // data pass to the parent 
