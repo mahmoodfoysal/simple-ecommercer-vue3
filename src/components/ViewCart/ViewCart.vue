@@ -32,7 +32,6 @@ let subTotal = computed(() => {
    const totalQuantityWithPrice = cartItems.value.reduce((total, item) => {
       return total + (item.price * item.quantity);
    }, 0);
-
    return totalQuantityWithPrice;
 });
 
@@ -129,12 +128,13 @@ const handleRemoveItem = (item) => {
             <td style="text-align: left; width:25%">$ {{ totalAmount }}</td>
          </tr>
       </table>
-
    </section>
    <div class="flex justify-end mr-[17%] mt-5">
-      <button
+      <router-link :to="{ name: 'Checkout', params: {slug: 'Check-out'}}">
+         <button
          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Check
          Out</button>
+      </router-link>
    </div>
 </template>
 <style scoped>

@@ -2,12 +2,9 @@
 import SideBar from './components/SideBar/SideBar.vue';
 import NavigationBar from './components/Shared/NavigationBar/NavigationBar.vue';
 import Footer from './components/Shared/Footer/Footer.vue';
-import { ref, defineEmits } from 'vue';
-
-const emits = defineEmits(['handle-add-to-car', 'handle-remove-item', 'cart-product-quantity-increment', 'cart-product-quantity-decrement'])
+import { ref } from 'vue';
 
 // declare all ref for reactivation 
-const receiveProductInfo = ref(null)
 const cart = ref([]);
 const pro_id = ref('');
 const pro_image = ref('');
@@ -19,7 +16,6 @@ const quantity = ref(1);
 
 // event handler for adding product to the cart 
 const handleAddToCart = product => {
-  receiveProductInfo.value = product;
   const isProductInCart = cart.value.find(cartItem => cartItem.pro_id === product.pro_id);
   if (!isProductInCart) {
     cart.value.push({
