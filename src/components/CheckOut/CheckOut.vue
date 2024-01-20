@@ -114,10 +114,10 @@ const handleInformationForm = () => {
     }
 
     // data pass to the parent 
-    emits('handle-checkout-info', checkOutInfo)
+    emits('handle-checkout-info', checkOutInfo, cartItems)
 
-    first_name.value = '';
-        last_name.value = '';
+        firstName.value = '';
+        lastName.value = '';
         phoneNo.value = '';
         city.value = '';
         country.value = '';

@@ -12,7 +12,24 @@ const pro_name = ref('');
 const price = ref('');
 const quantity = ref(1);
 
-// console.log(cart)
+// check out information all ref declare here 
+
+// this empty array store the data when user click check out 
+const checkOut = ref([]);
+
+const firstName = ref('');
+const lastName = ref('');
+const phoneNo = ref(null);
+const city = ref('');
+const country = ref('');
+const postalCode = ref(null);
+const state = ref('');
+const fullAddress = ref('');
+const email = ref('');
+const cardNo = ref(null);
+const nameOfCard = ref('');
+const cardExpireDate = ref('');
+const cardCVC = ref(null);
 
 // event handler for adding product to the cart 
 const handleAddToCart = product => {
@@ -76,8 +93,13 @@ const handleRemoveItem = (item) => {
 
 // check out information and data store here 
 const handleInformationForm = (checkOutInfo) => {
-  console.log(checkOutInfo);
+  checkOut.value = [
+  checkOutInfo,
+  ];
+  cart.value = [];
 }
+
+console.log(checkOut);
 
 </script>
 <template>
