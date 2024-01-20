@@ -74,6 +74,11 @@ const handleRemoveItem = (item) => {
   } 
 }
 
+// check out information and data store here 
+const handleInformationForm = (checkOutInfo) => {
+  console.log(checkOutInfo);
+}
+
 </script>
 <template>
   <!-- navbar  -->
@@ -92,6 +97,7 @@ const handleRemoveItem = (item) => {
       @handle-remove-item="handleRemoveItem"
       @cart-product-quantity-increment="handleIncrementCartQuantity"
       @cart-product-quantity-decrement="handleDecrementCartQuantity"
+      @handle-checkout-info="handleInformationForm"
       ></router-view>
     </div>
   </div>

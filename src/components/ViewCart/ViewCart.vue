@@ -13,7 +13,13 @@ const props = defineProps({
 const { cartItems } = toRefs(props);
 
 // define emits for data pass to the parent
-const emits = defineEmits(['handle-add-to-cart','cart-product-quantity-increment','cart-product-quantity-decrement','handle-remove-item']);
+const emits = defineEmits([
+   'handle-add-to-cart', 
+   'cart-product-quantity-increment', 
+   'cart-product-quantity-decrement', 
+   'handle-remove-item',
+   'handle-checkout-info'
+]);
 
 // quantity increment event handler sent to the parent
 const increment = (proID) => {

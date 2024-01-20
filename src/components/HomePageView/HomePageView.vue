@@ -12,7 +12,13 @@ import { defineProps ,defineEmits } from 'vue';
 })
 
 // declare emit are here 
-const emits = defineEmits(['handle-add-to-cart', 'cart-product-quantity-increment','cart-product-quantity-decrement','handle-remove-item']);
+const emits = defineEmits([
+    'handle-add-to-cart', 
+    'cart-product-quantity-increment', 
+    'cart-product-quantity-decrement', 
+    'handle-remove-item',
+    'handle-checkout-info'
+]);
 
 // event handler pass for add to cart 
 const handleAddToCart = product => {
