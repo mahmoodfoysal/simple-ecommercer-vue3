@@ -79,7 +79,7 @@ const handleRemoveItem = (item) => {
 
 </script>
 <template>
-   <h2 class="text-3xl mt-2 mb-2">Cart Items</h2>
+   <h2 class="text-3xl mt-2 mb-2 border-b-2">Cart Items</h2>
    <section class="flex justify-center fix-height">
       <div>
          <div v-for="(cartItem, index) in cartItems" :key="index"
@@ -87,7 +87,7 @@ const handleRemoveItem = (item) => {
             <img class="cart-image object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
                :src="cartItem?.pro_image" alt="">
             <div class="flex flex-col justify-between p-4 leading-normal">
-               <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+               <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                   {{ cartItem?.pro_name }}
                </h5>
             </div>

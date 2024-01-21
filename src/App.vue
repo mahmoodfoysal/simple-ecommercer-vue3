@@ -42,13 +42,11 @@ const handleAddToCart = product => {
       price: product.price,
       quantity: quantity.value,
     });
-    // console.log("Product Added to Cart");
   } 
   else if(isProductInCart) {
       const index = cart.value.indexOf(isProductInCart);
       if(index !== -1) {
         cart.value[index].quantity++;
-        // console.log("Product with the same pro_id already exists in the Cart");
       }
   }
 }
@@ -59,7 +57,6 @@ const handleIncrementCartQuantity = (proID) => {
   if(isProductInCart) {
     const index = cart.value.indexOf(isProductInCart);
     if(index !== -1) {
-      // console.log("increment found"); 
       cart.value[index].quantity++;
     }
   }
@@ -71,7 +68,6 @@ const handleDecrementCartQuantity = (proID) => {
   if(isProductInCart) {
     const index = cart.value.indexOf(isProductInCart);
     if(index !== -1) {
-      // console.log("Decrement found"); 
       if(cart.value[index].quantity > 1) {
         cart.value[index].quantity--;
       }
