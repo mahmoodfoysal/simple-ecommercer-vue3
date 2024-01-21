@@ -11,14 +11,14 @@ categoryInfo.value = categories;
 <template>
   <!-- side bar loop  -->
   <section>
-
+    <h3 class="text-xl font-bold mb-2 ms-2">Categories</h3>
     <div id="accordion-collapse" data-accordion="collapse">
-      <div v-for="(category, cIndex) in categoryInfo" :key="cIndex">
+      <div class="p-2px" v-for="(category, cIndex) in categoryInfo" :key="cIndex">
         <h2 :id="`accordion-collapse-heading-${cIndex}`">
           <router-link 
           :to="{ name: 'ParentCategoryProducts', params: { id: category?.parent_cat_id, slug: category?.parent_cat_name.replace(/\s+/g, '-')} }">
           <button type="button"
-            class="flex items-center justify-between w-full p-2 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
+            class="flex items-center justify-between w-full p-2 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
             :data-accordion-target="`#accordion-collapse-body-${cIndex}`" aria-expanded="false"
             :aria-controls="`accordion-collapse-body-${cIndex}`">
             <span>
@@ -50,4 +50,9 @@ categoryInfo.value = categories;
   </section>
 </template>
 
-<style scoped></style>
+<style scoped>
+/* .sidebar-style {
+    border-right: 1px solid #d1d1d1;
+    height: calc(100vh - 77px);
+} */
+</style>

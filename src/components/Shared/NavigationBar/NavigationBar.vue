@@ -45,11 +45,11 @@ const cartQuantity = computed(() => {
         <div class="flex-none">
             <!-- menu items start  -->
             <div class="flex">
-                <router-link to="/"><p class="me-5 cursor-pointer font-medium">Home</p></router-link>
-                <router-link to="/products"><p class="me-5 cursor-pointer font-medium">Products</p></router-link>
-                <router-link to="/contact"><p class="me-5 cursor-pointer font-medium">Contact</p></router-link>
-                <router-link to="/about"><p class="me-5 cursor-pointer font-medium">About</p></router-link>
-                <router-link to="/faq"><p class="me-5 cursor-pointer font-medium">FAQ</p></router-link>
+                <router-link :to="{name: 'Home'}"><p class="me-5 cursor-pointer font-medium">Home</p></router-link>
+                <router-link :to="{name: 'Products'}"><p class="me-5 cursor-pointer font-medium">Products</p></router-link>
+                <router-link :to="{name: 'Contact'}"><p class="me-5 cursor-pointer font-medium">Contact</p></router-link>
+                <router-link :to="{name: 'AboutUs'}"><p class="me-5 cursor-pointer font-medium">About</p></router-link>
+                <router-link :to="{name: 'FAQ'}"><p class="me-5 cursor-pointer font-medium">FAQ</p></router-link>
             </div>
             
             <!-- menu item end  -->

@@ -103,8 +103,8 @@ console.log(checkOut);
   <NavigationBar 
   :cartItems="cart"
   ></NavigationBar>
-  <div class="grid sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 gap-3 mt-2">
-    <div class="sm:col-span-12 md:col-span-6 lg:col-span-3">
+  <div class="grid sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 gap-3">
+    <div class="sm:col-span-12 md:col-span-6 lg:col-span-3 sidebar-style">
       <!-- sidebar  -->
       <SideBar></SideBar>
     </div>
@@ -121,4 +121,8 @@ console.log(checkOut);
   </div>
   <Footer></Footer>
 </template>
-<style scoped></style>
+<style scoped>
+.sidebar-style {
+    border-right: 1px solid #d1d1d1;
+}
+</style>
