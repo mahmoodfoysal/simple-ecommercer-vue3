@@ -248,7 +248,7 @@ const handleInformationForm = () => {
         </div>
         <div class="sm:col-span-12 md:col-span-6 lg:col-span-6">
             <h1 class="text-3xl mb-5 mt-3">Order Summery</h1>
-            <div>
+            <div class="fix-height">
                 <div v-for="(cartItem, index) in cartItems" :key="index"
                     class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mb-3">
                     <img class="cart-image object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
@@ -315,4 +315,31 @@ const handleInformationForm = () => {
 .calculation-section {
     border-top: 1px solid black;
 }
+.fix-height {
+   height: calc(100vh - 285px);
+   overflow-y: scroll;
+}
+
+/* width */
+::-webkit-scrollbar {
+      width: 8px;
+      border-radius: 20px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
 </style>

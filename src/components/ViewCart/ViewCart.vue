@@ -14,9 +14,9 @@ const { cartItems } = toRefs(props);
 
 // define emits for data pass to the parent
 const emits = defineEmits([
-   'handle-add-to-cart', 
-   'cart-product-quantity-increment', 
-   'cart-product-quantity-decrement', 
+   'handle-add-to-cart',
+   'cart-product-quantity-increment',
+   'cart-product-quantity-decrement',
    'handle-remove-item',
    'handle-checkout-info'
 ]);
@@ -49,7 +49,7 @@ let totalVat = computed(() => {
 // delevary fee amount calculate and using condition
 let delevaryFee = computed(() => {
    if (cartQuantity.value <= 4) {
-      return  100;
+      return 100;
    }
    else if (cartQuantity.value > 10) {
       return 20;
@@ -79,7 +79,8 @@ const handleRemoveItem = (item) => {
 
 </script>
 <template>
-   <section class="flex justify-center">
+   <h2 class="text-3xl mt-2 mb-2">Cart Items</h2>
+   <section class="flex justify-center fix-height">
       <div>
          <div v-for="(cartItem, index) in cartItems" :key="index"
             class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mb-3">
@@ -136,10 +137,10 @@ const handleRemoveItem = (item) => {
       </table>
    </section>
    <div class="flex justify-end mr-[17%] mt-5">
-      <router-link :to="{ name: 'Checkout', params: {slug: 'Check-out'}}">
+      <router-link :to="{ name: 'Checkout', params: { slug: 'Check-out' } }">
          <button
-         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Check
-         Out</button>
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Check
+            Out</button>
       </router-link>
    </div>
 </template>
@@ -154,4 +155,32 @@ const handleRemoveItem = (item) => {
 .calculation-section {
    border-top: 1px solid black;
 }
+
+.fix-height {
+   height: calc(100vh - 320px);
+   overflow-y: scroll;
+}
+
+/* width */
+::-webkit-scrollbar {
+      width: 8px;
+      border-radius: 20px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
 </style>
