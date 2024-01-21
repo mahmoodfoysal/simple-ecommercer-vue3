@@ -4,19 +4,20 @@ import NavigationBar from './components/Shared/NavigationBar/NavigationBar.vue';
 import Footer from './components/Shared/Footer/Footer.vue';
 import { ref } from 'vue';
 
-// declare all ref for reactivation 
+// declare empty array in the ref for data storing 
 const cart = ref([]);
+const checkOut = ref([]);
+
+// declare all ref for reactivation 
+
+// for view cart 
 const pro_id = ref('');
 const pro_image = ref('');
 const pro_name = ref('');
 const price = ref('');
 const quantity = ref(1);
 
-// check out information all ref declare here 
-
-// this empty array store the data when user click check out 
-const checkOut = ref([]);
-
+// for checkout information 
 const firstName = ref('');
 const lastName = ref('');
 const phoneNo = ref(null);
@@ -33,8 +34,11 @@ const cardCVC = ref(null);
 
 // event handler for adding product to the cart 
 const handleAddToCart = product => {
+  // searching same product by id in the array 
   const isProductInCart = cart.value.find(cartItem => cartItem.pro_id === product.pro_id);
+  // if same product in the array than store this data 
   if (!isProductInCart) {
+    // push the information to the cart array 
     cart.value.push({
       pro_id: product.pro_id,
       pro_image: product.pro_image,
@@ -43,9 +47,12 @@ const handleAddToCart = product => {
       quantity: quantity.value,
     });
   } 
+  // if same product in the array than quentity increase which product id are matched 
   else if(isProductInCart) {
+    // searching index 
       const index = cart.value.indexOf(isProductInCart);
       if(index !== -1) {
+        // find the value by index and increase quantity 
         cart.value[index].quantity++;
       }
   }
@@ -75,7 +82,7 @@ const handleDecrementCartQuantity = (proID) => {
   }
 }
 
-// remove item from the cart 
+// event handler for remove item from the cart 
 const handleRemoveItem = (item) => {
   const findTargetProduct = cart.value.find((cartItem) => cartItem.pro_id === item);
   if (findTargetProduct) {
@@ -87,16 +94,13 @@ const handleRemoveItem = (item) => {
   } 
 }
 
-// check out information and data store here 
+// event handler for checkout information and data store checkout array 
 const handleInformationForm = (checkOutInfo) => {
   checkOut.value = [
   checkOutInfo,
   ];
   cart.value = [];
 }
-
-console.log(checkOut);
-
 </script>
 <template>
   <!-- navbar  -->
@@ -109,6 +113,7 @@ console.log(checkOut);
       <SideBar></SideBar>
     </div>
     <div class="sm:col-span-12 md:col-span-6 lg:col-span-9">
+      <!-- declare router view for show routes  -->
       <router-view 
       :cartItems="cart" 
       @handle-add-to-cart="handleAddToCart"
@@ -119,6 +124,7 @@ console.log(checkOut);
       ></router-view>
     </div>
   </div>
+  <!-- footer  -->
   <Footer></Footer>
 </template>
 <style scoped>

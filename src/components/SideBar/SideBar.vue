@@ -2,8 +2,10 @@
 import categories from '/data/category.json';
 import { ref } from 'vue'
 
+// declare ref for reactivation 
 const categoryInfo = ref(null);
 
+// reactive categories array 
 categoryInfo.value = categories;
 
 </script>

@@ -1,5 +1,7 @@
 <script setup>
 import { defineProps, defineEmits, toRefs, ref, computed } from 'vue';
+
+// receive props from the parent component 
 const props = defineProps({
     cartItems: {
         type: Array,
@@ -7,6 +9,7 @@ const props = defineProps({
     }
 });
 
+// reactive props 
 const { cartItems } = toRefs(props);
 
 // declare emits for data pass to the parent 
@@ -19,7 +22,6 @@ const emits = defineEmits([
 ]);
 
 // declare all ref are here 
-
 const firstName = ref('');
 const lastName = ref('');
 const phoneNo = ref(null);
@@ -34,9 +36,6 @@ const nameOfCard = ref('');
 const cardExpireDate = ref('');
 const cardCVC = ref(null);
 const productInformation = ref('');
-
-
-
 
 // event handler for product increment button 
 const increment = (proID) => {
@@ -94,7 +93,7 @@ const handleRemoveItem = (item) => {
     emits('handle-remove-item', item);
 };
 
-
+// event handler for store checkout information 
 const handleInformationForm = () => {
     console.log("click information form");
     const checkOutInfo = {
@@ -117,6 +116,7 @@ const handleInformationForm = () => {
     // data pass to the parent 
     emits('handle-checkout-info', checkOutInfo, cartItems)
 
+        // after passing data input field are blank 
         firstName.value = '';
         lastName.value = '';
         phoneNo.value = '';

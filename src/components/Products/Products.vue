@@ -18,9 +18,15 @@ const handleAddToCart = product => {
   emits('handle-add-to-cart', product);
 }
 
+// pagination work are here 
+
+// decalare a variable for how much product show at a time 
 const itemsPerPage = 8;
+
+// reactivation page variable 
 const page = ref(1);
 
+// finding how much product in the array and division by 8
 const totalPages = computed(() => Math.ceil(productsInfo.value.length / itemsPerPage));
 
 const paginatedProducts = computed(() => {
@@ -29,6 +35,7 @@ const paginatedProducts = computed(() => {
   return productsInfo.value.slice(startIndex, endIndex);
 });
 
+// button control by clicking 
 const goToPage = (newPage) => {
   if (newPage >= 1 && newPage <= totalPages.value) {
     page.value = newPage;

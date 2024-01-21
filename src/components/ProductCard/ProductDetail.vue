@@ -28,7 +28,6 @@ const handleAddToCart = product => {
 }
 
 </script>
-
 <template>
     <p class="mt-5 mb-3">Home > Product Details > {{ route.params.slug.replaceAll('-', ' ') }}</p>
     <div

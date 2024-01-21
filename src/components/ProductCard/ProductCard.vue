@@ -1,5 +1,7 @@
 <script setup>
 import { toRefs, defineEmits } from 'vue';
+
+// receive props from the parent component 
 const props = defineProps({
     product: {
         type: Object,
@@ -7,7 +9,7 @@ const props = defineProps({
     }
 });
 
-// reactive the product props 
+// reactive props 
 const { product } = toRefs(props);
 
 // declare a empty object for store data when pass the data need this 
@@ -28,7 +30,6 @@ const handleAddToCart = (product) => {
     }
     emits('handle-add-to-cart', productObject);
 }
-
 
 </script>
 <template>

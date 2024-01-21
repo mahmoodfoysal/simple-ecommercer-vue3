@@ -1,7 +1,7 @@
 <script setup>
 import { toRefs, defineProps, computed, defineEmits } from 'vue';
 
-// receive props 
+// receive props from parent component 
 const props = defineProps({
    cartItems: {
       type: Array,
@@ -9,7 +9,7 @@ const props = defineProps({
    }
 });
 
-// reactive cart props props 
+// reactive props 
 const { cartItems } = toRefs(props);
 
 // define emits for data pass to the parent
@@ -21,12 +21,12 @@ const emits = defineEmits([
    'handle-checkout-info'
 ]);
 
-// quantity increment event handler sent to the parent
+// event handler for increase quantity and pass the value to the parent
 const increment = (proID) => {
    emits('cart-product-quantity-increment', proID);
 }
 
-// quantity decrement event handler sent to the parent
+// event handler for decrement quantity and pass the value to the parent
 const decrement = (proID) => {
    emits('cart-product-quantity-decrement', proID)
 }

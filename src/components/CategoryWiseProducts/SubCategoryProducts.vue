@@ -23,17 +23,19 @@ const filterProducts = () => {
   filteredProducts.value = specificProductInfo.value.filter(product => product.sub_category === routeParamsId.value);
 };
 
+// declare watch for id change 
 watch(() => route.params.id, () => {
   routeParamsId.value = Number(route.params.id);
   filterProducts();
 });
 
+// loading json file on mount for real time change 
 onMounted(() => {
   specificProductInfo.value = products;
   filterProducts();
 });
 
-// define emit here 
+// declare emit for pass data to the parent 
 const emits = defineEmits(['handle-add-to-cart']);
 
 // declare event handler for pass the data 

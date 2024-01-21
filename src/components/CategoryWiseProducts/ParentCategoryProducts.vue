@@ -12,19 +12,23 @@ const route = useRoute();
 const specificProductInfo = ref(null);
 const filteredProducts = ref([]);
 
+// reactive products array 
 specificProductInfo.value = products;
 
+// reactive id from the params 
 const routeParamsId = ref(Number(route.params.id));
 
 const filterProducts = () => {
   filteredProducts.value = specificProductInfo.value.filter(product => product.parent_category === routeParamsId.value);
 };
 
+// id change real time data finding 
 watch(() => route.params.id, () => {
   routeParamsId.value = Number(route.params.id);
   filterProducts();
 });
 
+// loading json file on mount for real time change 
 onMounted(() => {
   specificProductInfo.value = products;
   filterProducts();
